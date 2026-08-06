@@ -284,8 +284,8 @@ TEST_CASE("spherical_k reflection complex", "[spherical_bessel][xsf_tests]") {
     // Reference values computed with mpmath.
     auto [n, z, ref_spherical_k, rtol] = GENERATE(
         test_case{0, {5., 0}, {0.0021167884792604296, 0}, 1e-14},
-        test_case{0, {-5., 0}, {-46.625369033270780, 0}, 1e-14},
-        test_case{0, {0., 1.5707963267948966}, {-1, 0}, 1e-14},
+        test_case{0, {-5., 0}, {-46.625369033270780, 0}, 1e-14}, test_case{0, {0., 1.5707963267948966}, {-1, 0}, 1e-14},
+        test_case{0, {-5., 0.1}, {-46.466945015583483, 0}, 1e-14},
         test_case{10, {5., 0}, {11.162178171949055, 0}, 1e-14},
         test_case{10, {-5., 0}, {-11.165977657150502, 0}, 1e-14},
         test_case{7, {5., 0}, {0.22221361309239493, 0}, 1e-14},
