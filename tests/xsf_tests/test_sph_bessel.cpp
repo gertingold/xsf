@@ -301,7 +301,7 @@ TEST_CASE("spherical_k reflection complex", "[spherical_bessel][xsf_tests]") {
 }
 
 TEST_CASE("spherical_k reflection complex arm problem", "[spherical_bessel][xsf_tests]") {
-    using test_case = std::tuple<long, std::complex<double>, std::complex<double>, double>;
+    using test_case = std::tuple<double, std::complex<double>, std::complex<double>, double>;
 
     // Reference values computed with mpmath.
     auto [n, z, ref_cyl_k, rtol] = GENERATE(
