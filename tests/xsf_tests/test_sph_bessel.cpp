@@ -305,7 +305,7 @@ TEST_CASE("spherical_k reflection complex arm problem", "[spherical_bessel][xsf_
 
     // Reference values computed with mpmath.
     auto [n, z, ref_cyl_k, rtol] = GENERATE(
-        test_case{0, {-5., 0}, {-83.18544531678101, 0}, 1e-14},
+        test_case{0, {-5., 0}, {-83.18544531678101, 0}, 1e-14}
     );
 
     std::complex<double> result_cyl_k = xsf::cyl_bessel_k(n, z);
