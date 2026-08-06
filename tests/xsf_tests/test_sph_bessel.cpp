@@ -304,15 +304,26 @@ TEST_CASE("spherical_k reflection complex arm problem", "[spherical_bessel][xsf_
     using test_case = std::tuple<double, std::complex<double>, std::complex<double>, double>;
 
     // Reference values computed with mpmath.
-    auto [n, z, ref_cyl_k, rtol] = GENERATE(
-        test_case{0.5, {-5., 0}, {0, -83.18544531678101}, 1e-14}
-    );
+    auto [n, z, ref_cyl_k, rtol] = GENERATE(test_case{0.5, {-5., 0}, {0, -83.18544531678101}, 1e-14});
 
     std::complex<double> result_cyl_k = xsf::cyl_bessel_k(n, z);
     double rel_err_cyl_k = xsf::extended_relative_error(result_cyl_k, ref_cyl_k);
 
     CAPTURE(n, z, result_cyl_k, ref_cyl_k, rel_err_cyl_k, rtol);
     REQUIRE(rel_err_cyl_k <= rtol);
+}
+
+TEST_CASE("sqrt complex arm problem", "[spherical_bessel][xsf_tests]") {
+    using test_case = std::tuple<std::complex<double>, std::complex<double>, double>;
+
+    // Reference values computed with mpmath.
+    auto [z, ref_sqrt, rtol] = GENERATE(test_case{{-5., 0}, {0, 0.56049912163979286, 1e-14});
+
+    std::complex<double> result_sqrt = std::sqrt(M_PI_2 / z)
+    double rel_err_sqrt = xsf::extended_relative_error(result_sqrt, ref_sqrt);
+
+    CAPTURE(z, result_sqrt, ref_sqrt, rel_err_sqrt, rtol);
+    REQUIRE(rel_err_sqrt <= rtol);
 }
 
 TEST_CASE("spherical_k_jac reflection derivative complex", "[spherical_bessel][xsf_tests]") {
