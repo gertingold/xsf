@@ -300,6 +300,21 @@ TEST_CASE("spherical_k reflection complex", "[spherical_bessel][xsf_tests]") {
     REQUIRE(rel_err_spherical_k <= rtol);
 }
 
+TEST_CASE("spherical_k reflection complex arm problem", "[spherical_bessel][xsf_tests]") {
+    using test_case = std::tuple<long, std::complex<double>, std::complex<double>, double>;
+
+    // Reference values computed with mpmath.
+    auto [n, z, ref_cyl_k, rtol] = GENERATE(
+        test_case{0, {-5., 0}, {-83.18544531678101, 0}, 1e-14},
+    );
+
+    std::complex<double> result_cyl_k = xsf::cyl_bessel_k(n, z);
+    double rel_err_cyl_k = xsf::extended_relative_error(result_cyl_k, ref_cyl_k);
+
+    CAPTURE(n, z, result_cyl_k, ref_cyl_k, rel_err_cyl_k, rtol);
+    REQUIRE(rel_err_cyl_k <= rtol);
+}
+
 TEST_CASE("spherical_k_jac reflection derivative complex", "[spherical_bessel][xsf_tests]") {
     using test_case = std::tuple<long, std::complex<double>, std::complex<double>, double>;
 
