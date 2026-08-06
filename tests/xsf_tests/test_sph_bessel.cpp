@@ -319,7 +319,7 @@ TEST_CASE("sqrt complex arm problem", "[spherical_bessel][xsf_tests]") {
     // Reference values computed with mpmath.
     auto [z, ref_sqrt, rtol] = GENERATE(test_case{{-5., 0}, {0, 0.56049912163979286}, 1e-14});
 
-    std::complex<double> result_sqrt = std::sqrt(M_PI_2 / z)
+    std::complex<double> result_sqrt = std::sqrt(M_PI_2 / z);
     double rel_err_sqrt = xsf::extended_relative_error(result_sqrt, ref_sqrt);
 
     CAPTURE(z, result_sqrt, ref_sqrt, rel_err_sqrt, rtol);
